@@ -1,0 +1,33 @@
+.loggedinuser
+{
+	color: #777777;
+    line-height: 50px;
+    font-size:16px;
+	align:right;
+	position:relative;
+	font-weight:bold;
+	color:black;
+}
+
+.title
+{
+	color: #777777;
+    line-height: 50px;
+    font-size:18px;
+	left:50%;
+	position:relative;
+}
+
+.borderless td {
+    border: none;
+    border-top:none;
+}
+
+.userinformation {
+	position:relative;
+	width:80%;
+	left:10%;
+	right:10%;
+	
+	
+}
