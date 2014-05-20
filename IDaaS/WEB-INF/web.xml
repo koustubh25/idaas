@@ -22,6 +22,26 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+          <servlet-name>UpdateTokenServlet</servlet-name>
+      <servlet-class>IDaaS.UpdateTokenServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        
+        <servlet-name>UpdateTokenServlet</servlet-name>
+        <url-pattern>/updatetoken</url-pattern>
+    </servlet-mapping>
+    
+      <servlet>
+          <servlet-name>DeleteTokenServlet</servlet-name>
+      <servlet-class>IDaaS.DeleteTokenServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        
+        <servlet-name>DeleteTokenServlet</servlet-name>
+        <url-pattern>/deletetoken</url-pattern>
+    </servlet-mapping>
 
     
 

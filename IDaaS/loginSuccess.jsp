@@ -12,6 +12,7 @@ if (session.getAttribute("username")== null)
  <head>
  <script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
  <script type="text/javascript" src="js/facebook_login.js"></script>
+ <script type="text/javascript" src="js/OTTServices.js"></script>
   <title>Bootstrap Test</title>
   <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
   <link type="text/css" rel="stylesheet" href="css/portal.css"/>
@@ -102,7 +103,7 @@ if(rSet.getString("facebook_token")==null)
 else
 {
 	
-	out.println("<td><button class='btn btn-success'>");
+	out.println("<td><button class='btn btn-success' onclick='disassociate(\"" + rSet.getString("userid") + "\",\"facebook\""  +  ")'>");
 	out.println("Disassociate");
 	out.println("</button></td>");
 }
@@ -172,6 +173,10 @@ catch(Exception e)
 </tr>
 </tbody>
 </table>
+
+<div id="afterAssociation">
+
+</div>
 <button class="btn btn-success"><b>+</b> Add User</button> 
 <button class="btn btn-danger"><b>-</b> Delete User </button>
 </div>
