@@ -1,5 +1,4 @@
 var appID = '1509102699311592';
-var appSecret = '2df0ce2288cb9c39f1e20105681e7b8a';
 
 function facebook_auth(userid)
 {
@@ -15,15 +14,18 @@ function facebook_auth(userid)
 		if (response.authResponse) {
 			var short_term_access_token =   FB.getAuthResponse()['accessToken']; 
 			// Obtain short term access token. Use this to obtain long term access token (60 Days)
-
-			getLoginTermAccessToken(short_term_access_token,userid);
+			console.log("short_term_access_token");
+			//getLoginTermAccessToken(short_term_access_token,userid);
+			console.log(short_term_access_token);
+			$("#afterAssociation").html("<font color='green' align='center'>Login Credentials verfied. Now doing the association. Please Wait...</font><br>");
+			pass_token(short_term_access_token,userid);
 		} else {
 			console.log('User cancelled login or did not fully authorize.');
 		}
 	}, {scope: 'user_likes,user_videos'});
 
 }
-
+/*
 function getLoginTermAccessToken(short_term_access_token,userid)
 {
 	console.log("inside logn term");
@@ -43,7 +45,7 @@ function getLoginTermAccessToken(short_term_access_token,userid)
 	else
 		{
 		$("#afterAssociation").html("<font color='red'>Error Asscoaiting</font><br>");
-	
+
 		}
 
 }
@@ -61,7 +63,7 @@ function insertToken(response,userid)
 
 	//Send the proper header information along with the request
 	http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	
+
 	http.send(params);
 	setTimeout(function () {
 		location.reload();
@@ -71,5 +73,21 @@ function insertToken(response,userid)
 }
 
 
+ */
+function pass_token(short_term_token,userid)
+{
+	var http = new XMLHttpRequest();
+	var url = "updatetoken";
+	var params = "service=facebook&userid=" + userid + "&token=" + short_term_token;
+	http.open("POST", url, true);
+
+	//Send the proper header information along with the request
+	http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+	http.send(params);
+	setTimeout(function () {
+		location.reload();
+	},1000);
 
 
+}

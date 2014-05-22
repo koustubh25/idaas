@@ -1,6 +1,7 @@
 package IDaaS;
 
 import java.io.IOException;
+import service.jerseyTestClient;
 
 
 import javax.servlet.ServletException;
@@ -24,6 +25,8 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+	
 		
 		String userId, password ;
 		HttpSession session=null;
