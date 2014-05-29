@@ -1,4 +1,4 @@
-function youtube_auth(userid)
+/*function youtube_auth(userid)
 {
 	var http = new XMLHttpRequest();
 	var url = "updatetoken";
@@ -19,17 +19,18 @@ function youtube_auth(userid)
 //Our Application uses OAuth.io 3rd party library 
 
 OAuth.initialize('Xb8pFNzFPazxC8GtJ13b06WsggQ');
-
+*/
 function youtube_auth(userid)
 {
+	/*
 console.log("inside youtube");
 OAuth.popup('youtube', function(error, result) {
   //handle error with error
   //use result.access_token in your API request
 	$("#afterAssociation").html("<font color='green' align='center'>Login Credentials verfied. Now doing the association. Please Wait...</font><br>");
 	pass_token_yt(result.access_token,userid,result.expires_in);
-});
-	//pass_token_yt('sfafs','koustubh25','32234');
+});*/
+	pass_token_yt('sfafs','koustubh25','32234');
 }
 function pass_token_yt(token,userid,expiry)
 {

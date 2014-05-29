@@ -21,6 +21,16 @@ if (session.getAttribute("username")!=null && session.getAttribute("username")!=
   <div class="panel-body">
    <form role="form" action="login" method="post">
   <div class="form-group">
+ 
+   <label>Login as </label>
+  <select>
+  <option value="hoh">
+  Head of household
+  </option>
+  <option value="moh">
+  Member of Household
+  </option>
+  </select>
     <label>Username</label>
     <input type="text" class="form-control" style="border-radius:0px" name="userid" id="userid" placeholder="Enter Username">
   </div>

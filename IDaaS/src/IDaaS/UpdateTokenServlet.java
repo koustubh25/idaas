@@ -52,10 +52,10 @@ public class UpdateTokenServlet extends HttpServlet {
 		}
 		else if (service.equals("youtube"))
 		{
-			expiry=Integer.toString((Integer.parseInt(request.getParameter("expiry"))));
+			//expiry=Integer.toString((Integer.parseInt(request.getParameter("expiry"))));
 			//System.out.println(userid + expiry);
 			
-			//long_term_token.get_longterm_token(null,"youtube");
+			long_term_token.get_longterm_token(null,"youtube");
 			//System.out.println("exiting ling term token");
 			
 		}

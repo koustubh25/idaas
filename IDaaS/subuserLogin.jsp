@@ -1,5 +1,8 @@
-<%@ page import="service.Databaseio,java.sql.Connection,java.sql.ResultSet,java.sql.Statement,java.sql.DriverManager" %>
-<%
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ page import="service.Databaseio,java.sql.Connection,java.sql.ResultSet,java.sql.Statement,java.sql.DriverManager" %>
+    
+    <%
 
 if (session.getAttribute("username")== null)
 		{
@@ -7,10 +10,10 @@ if (session.getAttribute("username")== null)
 		}
 
 %>
-<!DOCTYPE html>
-<html lang="en">
- <head>
- 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
  <!-- Load OAuth.io Library -->
  <script type="text/javascript" src="js/OAuthio/oauth.js"> </script>
  
@@ -31,9 +34,11 @@ if (session.getAttribute("username")== null)
  <!-- Generic OTT functions -->
  <script type="text/javascript" src="js/OTTServices.js"></script>
  
-  <title>Manage Users in the Household</title>
+
   <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
-  <link type="text/css" rel="stylesheet" href="css/portal.css"/>
+    <link type="text/css" rel="stylesheet" href="css/portal.css"/>
+  
+<title>Manage Social Accounts</title>
 </head>
 <body>
 
@@ -76,16 +81,12 @@ if (session.getAttribute("username")== null)
   </div><!-- /.container-fluid -->
 </nav>
 
-<div style="left:10%;right:10%;height:10%;position:absolute;">
-
-<font style="color:#0B173B; font-size:25px;">Current Users in the Household</font>
-
-
-	<table class="table table-bordered table-striped datatable" style="height:100%;position:relative;">
+<br>
+<div class="userinformation">
+<table class="table table-bordered table-striped datatable" style="height:100%;position:relative;">
 <thead>
 <tr>
-<th>Select</th>
-<th>User</th>
+<th>Household name</th>
 <th>User ID</th>
 <th>Facebook Account</th>
 <th>Youtube Account</th>
@@ -100,14 +101,16 @@ Databaseio dbio = new Databaseio();
 Connection con = dbio.getConnection();
 try{
 Statement stmt = con.createStatement();
-ResultSet rSet = stmt.executeQuery("select user.name,social.* from `social` LEFT JOIN `user` on user.userid=social.userid;");
+ResultSet rSet = stmt.executeQuery(" select * from user a,social b,household c where a.userid=b.userid and a.userid='" + session.getAttribute("username")+"'");
 
 while (rSet.next()) {
-out.println("<tr> <td><input type='checkbox'></td><td>");
+out.println("<tr> ");
 
-out.println("<a href='userinformation.jsp?userid=" + rSet.getString("userid") + "'>" +  rSet.getString("name")+ "</a>");
+out.println("<td>");
+out.println(rSet.getString("DefaultUser"));
+out.println("</td>");
 
-out.println("</td><td>");
+out.println("<td>");
 out.println(rSet.getString("userid"));
 out.println("</td>");
 
@@ -174,8 +177,7 @@ else
 
 out.println("</tr>");
 }
-rSet.close();
-con.close();
+
 }
 catch(Exception e)
 {
@@ -192,16 +194,72 @@ catch(Exception e)
 </tbody>
 </table>
 
-<div id="afterAssociation">
+
+
+<%  
+
+String userid = request.getParameter("userid");
+try{
+Statement stmt = con.createStatement();
+
+ResultSet rSet = stmt.executeQuery("select * from user where userid='" + request.getParameter("userid") + "';");
+rSet.next();
+
+%>
+
+
+
+<font style="color:#0B173B; font-family:sans serif; font-size:35px;"> <%=rSet.getString("name") %></font>
+<table class='table borderless'>
+	</tbody>
+<tr>
+<td>Profile Picture</td>
+<td><img src='<%=rSet.getString("prof_pic")%>'></td>
+</tr>
+
+<tr>
+<td>UserID</td>
+<td><%=rSet.getString("userid") %></td>
+</tr>
+<tr>
+<td>E-Mail</td>
+<td><%=rSet.getString("email") %></td>
+</tr>
+<tr>
+<td>Birth date</td>
+<td><%=rSet.getString("birthday") %></td>
+</tr>
+<tr>
+<td>Current Location</td>
+<td><%=rSet.getString("current_location") %></td>
+</tr>
+<tr>
+<td>Date Created</td>
+<td><%=rSet.getString("creation_date") %></td>
+</tr>
+<tr>
+<td>Last Update</td>
+<td><%=rSet.getString("last_update") %></td>
+</tr>
+
+
+</tbody>
+	</table>
+	
+</div>	
+	<%
+	rSet.close();
+	con.close();
+	}
+
+catch(Exception e)
+{
+	out.print("<p><font color=\"red\" >Something went wrong</font></p>");
+	e.printStackTrace();
+}
+%>
+
 
 </div>
-<button class="btn btn-success"><b>+</b> Add User</button> 
-<button class="btn btn-danger"><b>-</b> Delete User </button>
-</div>
-
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  
 </body>
 </html>

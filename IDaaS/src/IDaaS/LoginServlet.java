@@ -28,19 +28,30 @@ public class LoginServlet extends HttpServlet {
 		
 	
 		
-		String userId, password ;
+		String userId, password,loginas ;
 		HttpSession session=null;
+		boolean result=false;
 		userId = request.getParameter("userid");
 		password = request.getParameter("password");
-
+		loginas = request.getParameter("loginas");
 		UserManagement loginservice = new UserManagement();
 		session = request.getSession();
-		boolean result = loginservice.authenticate(userId, password);
-		if(result)
+		if(loginas.equals("hoh"))
+		{
+		result = loginservice.authenticate(userId, password,loginas,null);
+		}
+		else
+		{
+			String householdid = request.getParameter("householdid");
+			result = loginservice.authenticate(userId, password,loginas,householdid);
+		}
+			if(result)
 		{
 			session.setAttribute("username", userId);
+			if(loginas.equals("hoh"))
 			response.sendRedirect("loginSuccess.jsp");
-		
+			else
+				response.sendRedirect("subuserLogin.jsp?userid=" + userId);
 		}
 		else
 		{
