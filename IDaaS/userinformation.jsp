@@ -76,7 +76,7 @@ rSet.next();
 
 
 <div class="userinformation">
-<font style="color:#0B173B; font-family:sans serif; font-size:35px;"> <%=rSet.getString("display_name") %></font>
+<font style="color:#0B173B; font-family:sans serif; font-size:35px;"> <%=rSet.getString("name") %></font>
 <table class='table borderless'>
 	</tbody>
 <tr>

@@ -18,7 +18,7 @@ function facebook_auth(userid)
 			//getLoginTermAccessToken(short_term_access_token,userid);
 			console.log(short_term_access_token);
 			$("#afterAssociation").html("<font color='green' align='center'>Login Credentials verfied. Now doing the association. Please Wait...</font><br>");
-			pass_token(short_term_access_token,userid);
+			pass_token_fb(short_term_access_token,userid);
 		} else {
 			console.log('User cancelled login or did not fully authorize.');
 		}
@@ -74,7 +74,7 @@ function insertToken(response,userid)
 
 
  */
-function pass_token(short_term_token,userid)
+function pass_token_fb(short_term_token,userid)
 {
 	var http = new XMLHttpRequest();
 	var url = "updatetoken";

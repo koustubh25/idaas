@@ -2,6 +2,7 @@ package IDaaS;
 
 import java.io.IOException;
 
+
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
@@ -31,17 +32,48 @@ public class UpdateTokenServlet extends HttpServlet {
 		String userid = request.getParameter("userid");
 		String service = request.getParameter("service");
 		String token = request.getParameter("token");
+		
 		String expiry = null;
+		boolean updated=false;
+		System.out.println(service);
 		//boolean updated=this.insertToken(service,userid,token,Integer.parseInt(expiry));
 		if (service.equals("facebook"))
 		{
 			String parts[]= long_term_token.get_longterm_token(token,service).split("&expires=");
-
 			expiry=parts[1];
 			token =  parts[0].split("access_token=")[1];
 		}	
-		boolean updated=this.insertToken(service,userid,token,Integer.parseInt(expiry));
-		//updated=false;
+		else if (service.equals("dailymotion"))
+		{
+			//converting from milliseconds to seconds and then back to String
+			expiry=Integer.toString((Integer.parseInt(request.getParameter("expiry"))/1000));
+			System.out.println(userid + expiry);
+			
+		}
+		else if (service.equals("youtube"))
+		{
+			expiry=Integer.toString((Integer.parseInt(request.getParameter("expiry"))));
+			//System.out.println(userid + expiry);
+			
+			//long_term_token.get_longterm_token(null,"youtube");
+			//System.out.println("exiting ling term token");
+			
+		}
+		else if (service.equals("soundcloud"))
+		{
+			
+			expiry=request.getParameter("expiry");
+			updated=this.insertToken(service,userid,token,0);
+		
+			
+		}
+		if(!service.equals("soundcloud"))
+		{
+			System.out.println("check youtube");
+			System.out.println(expiry);
+			updated=this.insertToken(service,userid,token,Integer.parseInt(expiry));
+		}
+			//updated=false;
 		if(updated==false)
 		{
 			PrintWriter out = response.getWriter();
@@ -59,13 +91,23 @@ public class UpdateTokenServlet extends HttpServlet {
 
 	public boolean insertToken(String service, String userid, String token, int expiry)
 	{
-		System.out.println("inside insert token");
+		System.out.println("inside insert token" + expiry);
 		try{
+			
 			Databaseio dbio = new Databaseio();
 			Connection con = dbio.getConnection();
 			Statement stmt = con.createStatement();
-			String query="update social set " + service + "_token='" + token + "'," + service + "_token_expiry=ADDDATE(current_timestamp, INTERVAL " + expiry +  " second) where userid='" + userid + "'";
-			System.out.println(query);
+			String query=null;
+			if(service.equals("soundcloud"))
+			{
+				 query="update social set " + service + "_token='" + token + "'," + service + "_token_expiry=\'0000-00-00\' where userid='" + userid + "'";
+				
+			}
+				else
+				{
+					 query="update social set " + service + "_token='" + token + "'," + service + "_token_expiry=ADDDATE(current_timestamp, INTERVAL " + expiry +  " second) where userid='" + userid + "'";
+				}
+					System.out.println(query);
 			stmt.executeUpdate(query);
 			return true;
 		}

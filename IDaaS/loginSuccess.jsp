@@ -10,9 +10,27 @@ if (session.getAttribute("username")== null)
 <!DOCTYPE html>
 <html lang="en">
  <head>
+ 
+ <!-- Load OAuth.io Library -->
+ <script type="text/javascript" src="js/OAuthio/oauth.js"> </script>
+ 
+ <!-- Load soundcloud login-->
+ <script type="text/javascript" src="js/soundcloud_login.js"></script>
+ 
+  <!-- Loading Facebook Javascript SDK -->
  <script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
  <script type="text/javascript" src="js/facebook_login.js"></script>
+ 
+ <!-- Loading Dailymotion Javascript SDK -->
+ <script src="http://api.dmcdn.net/all.js"></script>
+ <script type="text/javascript" src="js/dailymotion_login.js"></script>
+ 
+ <!-- Youtube -->
+  <script type="text/javascript" src="js/youtube_login.js"></script>
+ 
+ <!-- Generic functions -->
  <script type="text/javascript" src="js/OTTServices.js"></script>
+ 
   <title>Bootstrap Test</title>
   <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
   <link type="text/css" rel="stylesheet" href="css/portal.css"/>
@@ -82,12 +100,12 @@ Databaseio dbio = new Databaseio();
 Connection con = dbio.getConnection();
 try{
 Statement stmt = con.createStatement();
-ResultSet rSet = stmt.executeQuery("select user.display_name,social.* from `social` LEFT JOIN `user` on user.userid=social.userid;");
+ResultSet rSet = stmt.executeQuery("select user.name,social.* from `social` LEFT JOIN `user` on user.userid=social.userid;");
 
 while (rSet.next()) {
 out.println("<tr> <td><input type='checkbox'></td><td>");
 
-out.println("<a href='userinformation.jsp?userid=" + rSet.getString("userid") + "'>" +  rSet.getString("display_name")+ "</a>");
+out.println("<a href='userinformation.jsp?userid=" + rSet.getString("userid") + "'>" +  rSet.getString("name")+ "</a>");
 
 out.println("</td><td>");
 out.println(rSet.getString("userid"));
@@ -111,14 +129,14 @@ else
 if(rSet.getString("youtube_token")==null)
 {
 	
-	out.println("<td><button class='btn btn-danger'>");
+	out.println("<td><button class='btn btn-danger'  onclick='youtube_auth(\"" + rSet.getString("userid") + "\")'>");
 	out.println("Associate");
 	out.println("</button></td>");
 }
 else
 {
 	
-	out.println("<td><button class='btn btn-success'>");
+	out.println("<td><button class='btn btn-success'  onclick='disassociate(\"" + rSet.getString("userid") + "\",\"youtube\""  +  ")'>");
 	out.println("Disassociate");
 	out.println("</button></td>");
 }
@@ -126,14 +144,14 @@ else
 if(rSet.getString("dailymotion_token")==null)
 {
 	
-	out.println("<td><button class='btn btn-danger'>");
+	out.println("<td><button class='btn btn-danger'  onclick='dailymotion_auth(\"" + rSet.getString("userid") + "\")'>");
 	out.println("Associate");
 	out.println("</button></td>");
 }
 else
 {
 	
-	out.println("<td><button class='btn btn-success'>");
+	out.println("<td><button class='btn btn-success'  onclick='disassociate(\"" + rSet.getString("userid") + "\",\"dailymotion\""  +  ")'>");
 	out.println("Disassociate");
 	out.println("</button></td>");
 }
@@ -141,14 +159,14 @@ else
 if(rSet.getString("soundcloud_token")==null)
 {
 	
-	out.println("<td><button class='btn btn-danger'>");
+	out.println("<td><button class='btn btn-danger'  onclick='soundcloud_auth(\"" + rSet.getString("userid") + "\")'>");
 	out.println("Associate");
 	out.println("</button></td>");
 }
 else
 {
 	
-	out.println("<td><button class='btn btn-success'>");
+	out.println("<td><button class='btn btn-success'  onclick='disassociate(\"" + rSet.getString("userid") + "\",\"soundcloud\""  +  ")'>");
 	out.println("Disassociate");
 	out.println("</button></td>");
 }
