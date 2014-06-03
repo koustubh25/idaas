@@ -8,7 +8,6 @@ function soundcloud_auth(userid)
 OAuth.popup('soundcloud', function(error, result) {
   //handle error with error
   //use result.access_token in your API request
-	
 	pass_token_sc(result.access_token,userid)
 });
 

@@ -10,6 +10,8 @@ if (session.getAttribute("username")== null)
 <!DOCTYPE html>
 <html lang="en">
  <head>
+ <!-- Favicon -->
+ <link rel="icon"  type="image/png"  href="pics/logos/cisco_vsmall.png">
  
  <!-- Load OAuth.io Library -->
  <script type="text/javascript" src="js/OAuthio/oauth.js"> </script>
@@ -22,7 +24,7 @@ if (session.getAttribute("username")== null)
  <script type="text/javascript" src="js/facebook_login.js"></script>
  
  <!-- Loading Dailymotion Javascript SDK -->
- <script src="http://api.dmcdn.net/all.js"></script>
+ <script src="https://api.dmcdn.net/all.js"></script>
  <script type="text/javascript" src="js/dailymotion_login.js"></script>
  
  <!-- Youtube -->
@@ -47,14 +49,14 @@ if (session.getAttribute("username")== null)
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Cisco</a>
+      <a class="navbar-brand" href="http://www.cisco.com"><img src="pics/logos/Cisco_logo.svg" style="position:relative;height:100%"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
        <div class="title">
-     User Management Portal </div>
+     User Management Portal - VCS UI</div>
       </ul>
         <ul class="nav navbar-nav navbar-right">
         <li><a href="logout">logout</a></li>
@@ -68,7 +70,7 @@ if (session.getAttribute("username")== null)
       <form class="navbar-form navbar-right" role="search">
           <input type="text" class="form-control" placeholder="Search">
         
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default" disabled>Submit</button>
       </form>
     
 		</div>
@@ -192,16 +194,17 @@ catch(Exception e)
 </tbody>
 </table>
 
-<div id="afterAssociation">
+<div id="afterAssociation" style="margin:0 auto;"">
 
 </div>
-<button class="btn btn-success"><b>+</b> Add User</button> 
-<button class="btn btn-danger"><b>-</b> Delete User </button>
+<button class="btn btn-success" disabled><b>+</b> Add User</button> 
+<button class="btn btn-danger" disabled><b>-</b> Delete User </button>
 </div>
-
+ <div class="footer">Copyright © 2014 Cisco and/or its affiliates. All rights reserved.</div>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  
+
 </body>
+ 
 </html>

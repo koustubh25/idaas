@@ -21,6 +21,8 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
+
+
 public class Token 
 {
 	public String facebook_appID = "1509102699311592";
@@ -47,14 +49,15 @@ public class Token
 
 	}
 
-	public String getYoutubeAccessToken()
+	public static String getYoutubeAccessToken()
 	{
 
 		//YouTubeService service = new YouTubeService(youtube_clientID, "AIzaSyDq9JjVW9OsTzQbPkywWSyhHhyqJQkRePU");
 
-		System.out.println("modified youtube");
-		String temp=null;
-		temp=AuthSubUtil.getRequestUrl("http://idaas-vcsui.dlinkddns.com:8080/IDaaS/loginSuccess.jsp","http://gdata.youtube.com",false,true);
+		System.out.println("modified youtube2");
+	
+		String temp=AuthSubUtil.getRequestUrl("http://idaas-vcsui.dlinkddns.com:8080/IDaaS/loginSuccess.jsp","http://gdata.youtube.com",false,true);
+		System.out.println(temp);
 		System.out.println("someting");
 		//System.out.println(requestUrl);
 		return null;

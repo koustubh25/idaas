@@ -15,7 +15,13 @@ if (session.getAttribute("username")!=null && session.getAttribute("username")!=
  <script type="text/javascript" src="js/generic.js"></script>
   <title>User Management Portal - VCS UI</title>
   <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+  
+   <!-- Favicon -->
+ <link rel="icon"  type="image/png"  href="pics/logos/cisco_vsmall.png">
+ 
 </head>
+<body>
+<h1><center> <div style="font-family:initial">Welcome to Cisco Video Cloud Services  - User Managment Portal</div></center></h1><br>
 <div class="container" style="margin-top:30px">
 <div class="col-md-4 col-md-offset-4">
     <div class="panel panel-default">
@@ -40,7 +46,7 @@ if (session.getAttribute("username")!=null && session.getAttribute("username")!=
     <input type="text" class="form-control" style="border-radius:0px" name="userid" id="userid" placeholder="Enter Username">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Password <a href="/sessions/forgot_password">(forgot password)</a></label>
+    <label for="exampleInputPassword1">Password <a href="#">(forgot password)</a></label>
     <input type="password" class="form-control" style="border-radius:0px" name="password" id="password" placeholder="Password">
   </div>
   <button type="submit" class="btn btn-sm btn-default">Sign in</button><br><br>
@@ -53,11 +59,12 @@ if (session.getAttribute("username")!=null && session.getAttribute("username")!=
   }	
 %>	
 
-<div class="footer">Copyright © 2014 Cisco and/or its affiliates. All rights reserved.</div>
+
 </form>
   </div>
 </div>
 </div>
 </div>
+<div class="footer">Copyright © 2014 Cisco and/or its affiliates. All rights reserved.</div>
 </body>
 </html>

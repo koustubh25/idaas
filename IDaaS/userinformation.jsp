@@ -13,11 +13,15 @@ if (session.getAttribute("username")== null)
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+ <!-- Favicon -->
+ <link rel="icon"  type="image/png"  href="pics/logos/cisco_vsmall.png">
+ 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
     <link type="text/css" rel="stylesheet" href="css/portal.css"/>
   
-<title>Insert title here</title>
+<title>User Details</title>
 </head>
 <body>
 
@@ -31,7 +35,7 @@ if (session.getAttribute("username")== null)
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Cisco</a>
+      <a class="navbar-brand" href="#"><img src="pics/logos/Cisco_logo.svg" style="position:relative; height:100%;"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -52,7 +56,7 @@ if (session.getAttribute("username")== null)
       <form class="navbar-form navbar-right" role="search">
           <input type="text" class="form-control" placeholder="Search">
         
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default" disabled>Submit</button>
       </form>
     
 		</div>
@@ -124,5 +128,6 @@ catch(Exception e)
 	e.printStackTrace();
 }
 %>
+  <div class="footer">Copyright © 2014 Cisco and/or its affiliates. All rights reserved.</div>
 </body>
 </html>
