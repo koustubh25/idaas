@@ -63,7 +63,7 @@ public class utilities {
 		StandardPBEStringEncryptor jasypt = new StandardPBEStringEncryptor();
 
 		jasypt.setAlgorithm("PBEWithMD5AndTripleDES");
-		jasypt.setPassword("koustubh");
+		jasypt.setPassword("CiscoCTAO");
 		String authenticationToken = jasypt.encrypt(key);
 		System.out.println("Authentication token encrypted is" + authenticationToken);
 
@@ -397,10 +397,11 @@ public class utilities {
 			JSONObject temp2 = new JSONObject();
 			
 			temp1.put("social", social);
-			temp2.put("personal", personal);
+			temp1.put("personal", personal);
+			temp1.put("status","OK");
 			JSONArray subuser = new JSONArray();
-			subuser.put(temp2);
 			subuser.put(temp1);
+
 
 
 			con.close();

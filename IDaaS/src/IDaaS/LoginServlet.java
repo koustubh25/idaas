@@ -49,9 +49,10 @@ public class LoginServlet extends HttpServlet {
 		{
 			session.setAttribute("username", userId);
 			if(loginas.equals("hoh"))
-			response.sendRedirect("loginSuccess.jsp");
+				response.sendRedirect("loginSuccess.jsp");
 			else
-				response.sendRedirect("subuserLogin.jsp?userid=" + userId);
+				response.sendRedirect("subuserLogin.jsp");
+				//response.sendRedirect("subuserLogin.jsp?userid=" + userId);
 		}
 		else
 		{

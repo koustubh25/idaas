@@ -21,7 +21,7 @@ if (session.getAttribute("username")!=null && session.getAttribute("username")!=
  
 </head>
 <body>
-<h1><center> <div style="font-family:initial">Welcome to Cisco Video Cloud Services  - User Managment Portal</div></center></h1><br>
+<h1><center> <div style="font-family:initial">Welcome to Cisco CTAO Video Cloud Services  - User Managment Portal</div></center></h1><br>
 <div class="container" style="margin-top:30px">
 <div class="col-md-4 col-md-offset-4">
     <div class="panel panel-default">

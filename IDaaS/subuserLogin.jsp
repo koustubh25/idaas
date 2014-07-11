@@ -102,10 +102,16 @@ if (session.getAttribute("username")== null)
 <%  
 Databaseio dbio = new Databaseio();
 Connection con = dbio.getConnection();
+
+
+
 try{
 Statement stmt = con.createStatement();
-ResultSet rSet = stmt.executeQuery(" select * from user a,social b,household c where a.userid=b.userid and a.userid='" + session.getAttribute("username")+"'");
-
+String query = "select household.DefaultUser,social.*,user.* from household join social join user on user.userid='" + session.getAttribute("username") + "' and user.userid=social.userid and household.householdID=(select householdID from user where userid='" + session.getAttribute("username") + "');";
+System.out.println("query is" + query);
+//String query = " select * from user inner join social on user.userid=social.userid and user.userid='" + session.getAttribute("username") +"'";
+ResultSet rSet = stmt.executeQuery(query);
+System.out.println(query);
 while (rSet.next()) {
 out.println("<tr> ");
 
@@ -201,11 +207,14 @@ catch(Exception e)
 
 <%  
 
-String userid = request.getParameter("userid");
+//String userid = request.getParameter("userid");
+//String userid = session.getAttribute("username");
+String userDetailsQuery = "select * from user where userid='" +  session.getAttribute("username") + "';";
+System.out.println(userDetailsQuery);
 try{
 Statement stmt = con.createStatement();
 
-ResultSet rSet = stmt.executeQuery("select * from user where userid='" + request.getParameter("userid") + "';");
+ResultSet rSet = stmt.executeQuery(userDetailsQuery);
 rSet.next();
 
 %>
@@ -217,7 +226,7 @@ rSet.next();
 	</tbody>
 <tr>
 <td>Profile Picture</td>
-<td><img src='<%=rSet.getString("prof_pic")%>'></td>
+<td><img src='<%=rSet.getString("prof_pic")%>'  style='position:relative;width:30%;'></td>
 </tr>
 
 <tr>

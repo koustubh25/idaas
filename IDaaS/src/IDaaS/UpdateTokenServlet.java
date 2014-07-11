@@ -56,8 +56,10 @@ public class UpdateTokenServlet extends HttpServlet {
 			//System.out.println(userid + expiry);
 			
 			//long_term_token.get_longterm_token(null,"youtube");
-			//expiry=(Integer.parseInt(request.getParameter("expiry")));
-			updated=this.insertToken("youtube",userid,token,(Integer.parseInt(request.getParameter("expiry"))));
+			expiry=request.getParameter("expiry");
+			System.out.println("inside youtube");
+			
+			updated=this.insertToken("youtube",userid,token,Integer.parseInt(expiry));
 			//System.out.println("exiting ling term token");
 			
 		}

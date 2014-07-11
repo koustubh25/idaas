@@ -102,7 +102,7 @@ Databaseio dbio = new Databaseio();
 Connection con = dbio.getConnection();
 try{
 Statement stmt = con.createStatement();
-ResultSet rSet = stmt.executeQuery("select user.name,social.* from `social` LEFT JOIN `user` on user.userid=social.userid;");
+ResultSet rSet = stmt.executeQuery("select user.name,social.* from `social` LEFT JOIN `user` on user.userid=social.userid  where  user.householdID=(select householdID from household where Defaultuser='" + session.getAttribute("username") + "');");
 
 while (rSet.next()) {
 out.println("<tr> <td><input type='checkbox'></td><td>");

@@ -85,7 +85,7 @@ rSet.next();
 	</tbody>
 <tr>
 <td>Profile Picture</td>
-<td><img src='<%=rSet.getString("prof_pic")%>'></td>
+<td><img src='<%=rSet.getString("prof_pic")%>' style='position:relative;width:30%;'></td>
 </tr>
 
 <tr>
@@ -128,6 +128,6 @@ catch(Exception e)
 	e.printStackTrace();
 }
 %>
-  <div class="footer">Copyright © 2014 Cisco and/or its affiliates. All rights reserved.</div>
+  
 </body>
 </html>

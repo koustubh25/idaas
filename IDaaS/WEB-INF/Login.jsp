@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <%
 //System.out.println(session.getAttribute("username"));
-System.out.println("random");
+
 if (session.getAttribute("username")!=null && session.getAttribute("username")!="invalid")
 {
 	response.sendRedirect("loginSuccess.jsp");

@@ -88,6 +88,8 @@ public class HeadUser {
 			return Response.status(401).entity(temp1).build();
 
 		}
+		
+		System.out.println("username is" +  username + " password is " + password);
 
 		//Genrate access token
 		token = utility.generateToken(username);
@@ -115,7 +117,7 @@ public class HeadUser {
 			headObj.put("creationDate",rSet.getString("creation_date"));
 			headObj.put("lastUpdate", rSet.getString("last_update"));
 			headObj.put("accessToken", token);
-
+			headObj.put("profPic", rSet.getString("prof_pic"));
 
 			SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
@@ -141,7 +143,7 @@ public class HeadUser {
 
 			rSet = stmt.executeQuery(query);
 			rSet.next();
-			headObj.put("Session ID", rSet.getString("sessionid"));
+			headObj.put("sessionID", rSet.getString("sessionid"));
 			temp1.put("head",headObj);
 			rSet.close();
 			con.close();
@@ -174,7 +176,13 @@ public class HeadUser {
 
 
 			}
+			
+			
+			
+			
+			
 			temp1.put("subusers", subuser);
+			temp1.put("status","OK");
 			json.put(temp1);
 			rSet.close();
 		}
